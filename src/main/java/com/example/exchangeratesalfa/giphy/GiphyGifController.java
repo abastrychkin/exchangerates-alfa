@@ -4,6 +4,7 @@ package com.example.exchangeratesalfa.giphy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,42 +31,49 @@ public class GiphyGifController {
 //    public GifUrl getRandomBrokeGif() {
 //        return giphyService.getRandomBrokeGif();
 //    }
+//
+//    @GetMapping("/rich")
+//    @ResponseBody
+//    public String getRandomRichGif(RedirectAttributes attributes) {
+//        String gifUrl = giphyService.getRandomRichGif().getUrl();
+//        return  "<html>\n"
+//                + "<header><title>"
+//                + "rich"
+//                + "</title></header>\n"
+//                + "<body>\n"
+//                + "<img src=\""+ gifUrl + "\" alt=\"rich\" />"
+//                + "</body>\n"
+//                + "</html>";
+//    }
+//
+//    @GetMapping("/broke")
+//    @ResponseBody
+//    public String getRandomBrokeGif(RedirectAttributes attributes) {
+//        String gifUrl = giphyService.getRandomBrokeGif().getUrl();
+//
+//        return  "<html>\n"
+//                + "<header><title>"
+//                + "broke"
+//                + "</title></header>\n"
+//                + "<body>\n"
+//                + "<img src=\""+ gifUrl + "\" alt=\"broke\" />"
+//                + "</body>\n"
+//                + "</html>";
+//    }
+
 
     @GetMapping("/rich")
-    @ResponseBody
-    public String getRandomRichGif(RedirectAttributes attributes) {
+    public String gifRichTemplate(Model model) {
         String gifUrl = giphyService.getRandomRichGif().getUrl();
-        return  "<html>\n"
-                + "<header><title>"
-                + "rich"
-                + "</title></header>\n"
-                + "<body>\n"
-                + "<img src=\""+ gifUrl + "\" alt=\"rich\" />"
-                + "</body>\n"
-                + "</html>";
+        model.addAttribute("gifUrl", gifUrl);
+        return "giftemplate";
     }
 
     @GetMapping("/broke")
-    @ResponseBody
-    public String getRandomBrokeGif(RedirectAttributes attributes) {
+    public String gifBrokeTemplate(Model model) {
         String gifUrl = giphyService.getRandomBrokeGif().getUrl();
-
-        return  "<html>\n"
-                + "<header><title>"
-                + "broke"
-                + "</title></header>\n"
-                + "<body>\n"
-                + "<img src=\""+ gifUrl + "\" alt=\"broke\" />"
-                + "</body>\n"
-                + "</html>";
-    }
-
-
-    @GetMapping("/richgif")
-    public ModelAndView redirectWithUsingRedirectPrefix(ModelMap model) {
-        String gifUrl = giphyService.getRandomRichGif().getUrl();
-        model.addAttribute("attribute", "redirectWithRedirectPrefix");
-        return new ModelAndView("forward:" + gifUrl, model);
+        model.addAttribute("gifUrl", gifUrl);
+        return "giftemplate";
     }
 
 
