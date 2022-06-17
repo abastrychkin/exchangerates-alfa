@@ -1,4 +1,4 @@
-package com.example.exchangeratesalfa.giphy;
+package com.example.exchangeratesalfa.giphy.domain;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.annotation.JsonRootName;

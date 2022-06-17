@@ -1,7 +1,8 @@
-package com.example.exchangeratesalfa.giphy;
+package com.example.exchangeratesalfa.giphy.controller;
 
+import com.example.exchangeratesalfa.giphy.service.GiphyService;
+import com.example.exchangeratesalfa.giphy.domain.GifUrl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

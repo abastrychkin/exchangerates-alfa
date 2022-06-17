@@ -33,4 +33,20 @@ public class CurrencyServiceImpl implements CurrencyService {
         cal.add(Calendar.DATE, -1);
         return cal.getTime();
     }
+
+    public int rich(String currentCurrency) {
+        double todayCourse = this.getLatestCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
+        double yesterdayCourse = this.getYesterdayCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
+
+        double difference = todayCourse - yesterdayCourse;
+
+        int result = 0;
+        if (difference > 0) {
+            result = 1;
+        } else if(difference < 0) {
+            result = -1;
+        }
+
+        return result;
+    }
 }
