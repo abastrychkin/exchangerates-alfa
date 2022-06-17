@@ -2,7 +2,6 @@ package com.example.exchangeratesalfa.giphy.service;
 
 import com.example.exchangeratesalfa.giphy.domain.GifUrl;
 import com.example.exchangeratesalfa.giphy.feighclient.GiphyFeignClient;
-import com.example.exchangeratesalfa.giphy.service.GiphyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,23 +16,18 @@ public class GiphyServiceImpl implements GiphyService {
     @Override
     public GifUrl getRandomRichGif() {
         String json = giphyFeignClient.getRandomRichGif();
-        ObjectMapper mapper = new ObjectMapper();
-        GifUrl gifUrl = new GifUrl("");
-        try {
-            JsonNode jsonNode = mapper.readTree(json);
-            JsonNode urlNode = jsonNode.get("data").get("images").get("fixed_height").get("url");
-            String urlValue = urlNode.textValue();
-
-            gifUrl = new GifUrl (urlValue);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        GifUrl gifUrl = getGifUrlFromJson(json);
         return gifUrl;
     }
 
     @Override
     public GifUrl getRandomBrokeGif() {
         String json = giphyFeignClient.getRandomBrokeGif();
+        GifUrl gifUrl = getGifUrlFromJson(json);
+        return gifUrl;
+    }
+
+    private GifUrl getGifUrlFromJson(String json) {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = null;
         GifUrl gifUrl = new GifUrl("");

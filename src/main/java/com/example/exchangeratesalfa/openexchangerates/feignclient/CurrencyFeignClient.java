@@ -1,6 +1,5 @@
 package com.example.exchangeratesalfa.openexchangerates.feignclient;
 
-import com.example.exchangeratesalfa.feignsample.Post;
 import com.example.exchangeratesalfa.openexchangerates.domain.Currency;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

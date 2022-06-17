@@ -35,8 +35,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     public int rich(String currentCurrency) {
-        double todayCourse = this.getLatestCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
-        double yesterdayCourse = this.getYesterdayCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
+        //get first value from map
+        double todayCourse = getLatestCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
+        double yesterdayCourse = getYesterdayCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
 
         double difference = todayCourse - yesterdayCourse;
 
