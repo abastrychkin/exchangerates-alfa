@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrencyController {
 
     @Autowired
-    CurrencyService currencyService;
+    private CurrencyService currencyService;
 
     @GetMapping("/{currency}")
     public Currency getLatestCurrency(@PathVariable String currency) {

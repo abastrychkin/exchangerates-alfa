@@ -10,8 +10,6 @@ import java.util.List;
 
 @FeignClient(name = "currencyFeignClient", url = "${openexchangeratesApi.baseUrl}")
 public interface CurrencyFeignClient {
-    @GetMapping("/posts")
-    List<Post> getAllPosts();
 
     @GetMapping("/latest.json"
             + "?app_id=" + "${openexchangeratesApi.appId}"
