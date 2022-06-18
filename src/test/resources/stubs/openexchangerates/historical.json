@@ -1,0 +1,9 @@
+{
+  "disclaimer": "Usage subject to terms: https://openexchangerates.org/terms",
+  "license": "https://openexchangerates.org/license",
+  "timestamp": 1655510394,
+  "base": "USD",
+  "rates": {
+    "EUR": 0.952472
+  }
+}

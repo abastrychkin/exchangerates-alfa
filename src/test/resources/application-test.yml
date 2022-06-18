@@ -1,0 +1,4 @@
+openexchangeratesApi:
+  baseUrl: http://localhost:9091
+  appId: 7abfe791460a4e61ba36aaa62b1581d1
+  baseCurrency: USD
