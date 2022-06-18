@@ -1,5 +1,6 @@
 package com.example.exchangeratesalfa.openexchangerates.service;
 
+import com.example.exchangeratesalfa.common.Common;
 import com.example.exchangeratesalfa.openexchangerates.domain.Currency;
 import com.example.exchangeratesalfa.openexchangerates.feignclient.CurrencyFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,12 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public Currency getYesterdayCurrency(String currentCurrency) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedYesterday = dateFormat.format(yesterday());
+        String formattedYesterday = Common.getYesterdayFormattedString();
 
         return currencyFeignClient.getHistoricalCurrency(formattedYesterday, currentCurrency);
     }
 
-    private Date yesterday() {
-        final Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
-        return cal.getTime();
-    }
+
 
     public int rich(String currentCurrency) {
         //get first value from map

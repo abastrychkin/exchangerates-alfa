@@ -1,5 +1,6 @@
 package com.example.exchangeratesalfa.openexchangerates.feignclient;
 
+import com.example.exchangeratesalfa.common.Common;
 import com.example.exchangeratesalfa.openexchangerates.domain.Currency;
 import com.example.exchangeratesalfa.openexchangerates.service.CurrencyService;
 import org.junit.jupiter.api.Test;
@@ -65,7 +66,7 @@ public class CurrencyFeignClientTest {
     public void getHistoricalCurrency_whenValidClient_returnValidResponse() throws Exception {
         String testCurrency = "EUR";
 
-        String yesterdayFormattedString = getYesterdayFormattedString();
+        String yesterdayFormattedString = Common.getYesterdayFormattedString();
 
         // Using WireMock to mock client API:
         stubFor(get(urlEqualTo("/historical/"+ yesterdayFormattedString +".json"
@@ -92,15 +93,6 @@ public class CurrencyFeignClientTest {
         return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
     }
 
-    private String getYesterdayFormattedString() {
-        final Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
-        Date yesterday = cal.getTime();
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedYesterday = dateFormat.format(yesterday);
-
-        return formattedYesterday;
-    }
 
 }
