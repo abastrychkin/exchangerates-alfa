@@ -54,7 +54,7 @@ public class CurrencyServiceTest {
     }
 
     @Test
-    public void richTest() {
+    public void compareWithYesterdayTest() {
 
         String testCurrency = "EUR";
         String yesterdayFormattedStringDate = Common.getYesterdayFormattedString();
@@ -62,17 +62,17 @@ public class CurrencyServiceTest {
         when(currencyFeignClient.getLatestCurrency(testCurrency)).thenReturn(CurrencyTestData.currency());
         when(currencyFeignClient.getHistoricalCurrency(yesterdayFormattedStringDate,testCurrency)).thenReturn(CurrencyTestData.yesterdayCurrency());
 
-        assertThat(currencyService.rich(testCurrency)).isEqualTo(1);
+        assertThat(currencyService.compareWithYesterday(testCurrency)).isEqualTo(1);
 
         when(currencyFeignClient.getLatestCurrency(testCurrency)).thenReturn(CurrencyTestData.yesterdayCurrency());
         when(currencyFeignClient.getHistoricalCurrency(yesterdayFormattedStringDate,testCurrency)).thenReturn(CurrencyTestData.currency());
 
-        assertThat(currencyService.rich(testCurrency)).isEqualTo(-1);
+        assertThat(currencyService.compareWithYesterday(testCurrency)).isEqualTo(-1);
 
         when(currencyFeignClient.getLatestCurrency(testCurrency)).thenReturn(CurrencyTestData.currency());
         when(currencyFeignClient.getHistoricalCurrency(yesterdayFormattedStringDate,testCurrency)).thenReturn(CurrencyTestData.currency());
 
-        assertThat(currencyService.rich(testCurrency)).isEqualTo(0);
+        assertThat(currencyService.compareWithYesterday(testCurrency)).isEqualTo(0);
 
     }
 }

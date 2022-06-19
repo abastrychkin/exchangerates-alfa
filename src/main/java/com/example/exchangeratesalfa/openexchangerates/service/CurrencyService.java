@@ -10,5 +10,5 @@ public interface CurrencyService {
     //if rich return positive
     //if broke return negative
     //if not changed return 0
-    int rich(String currentCurrency);
+    int compareWithYesterday(String currentCurrency);
 }

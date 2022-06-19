@@ -30,7 +30,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
 
 
-    public int rich(String currentCurrency) {
+    public int compareWithYesterday(String currentCurrency) {
         //get first value from map
         double todayCourseUSDtoCurrency = getLatestCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();
         double yesterdayCourseUSDtoCurrency = getYesterdayCurrency(currentCurrency).getRates().entrySet().iterator().next().getValue();

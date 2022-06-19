@@ -7,12 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class ShowCaseController {
+public class GifRatesController {
     @Autowired
     CurrencyService currencyService;
 
@@ -21,7 +20,7 @@ public class ShowCaseController {
 
     @GetMapping("{currency}")
     public String getGifTemplate(Model model, @PathVariable String currency) {
-        int rich = currencyService.rich(currency);
+        int rich = currencyService.compareWithYesterday(currency);
         String gifUrl = "";
 
         if (rich >= 0) {
