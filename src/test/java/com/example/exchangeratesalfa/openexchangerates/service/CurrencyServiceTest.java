@@ -29,7 +29,7 @@ public class CurrencyServiceTest {
         Currency currency = currencyService.getLatestCurrency(testCurrency);
 
         assertThat(currency.getDisclaimer()).isEqualTo("disclaimer");
-        assertThat(currency.getLicense()).isEqualTo("licence");
+        assertThat(currency.getLicense()).isEqualTo("license");
         assertThat(currency.getTimestamp()).isEqualTo(2L);
         assertThat(currency.getBase()).isEqualTo("USD");
         assertThat(currency.getRates().entrySet().iterator().next().getKey()).isEqualTo("EUR");
@@ -46,7 +46,7 @@ public class CurrencyServiceTest {
         Currency currency = currencyService.getYesterdayCurrency(testCurrency);
 
         assertThat(currency.getDisclaimer()).isEqualTo("disclaimer");
-        assertThat(currency.getLicense()).isEqualTo("licence");
+        assertThat(currency.getLicense()).isEqualTo("license");
         assertThat(currency.getTimestamp()).isEqualTo(1L);
         assertThat(currency.getBase()).isEqualTo("USD");
         assertThat(currency.getRates().entrySet().iterator().next().getKey()).isEqualTo("EUR");

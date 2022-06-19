@@ -1,7 +1,7 @@
 package com.example.exchangeratesalfa.giphy.service;
 
 import com.example.exchangeratesalfa.giphy.domain.GifUrl;
-import com.example.exchangeratesalfa.giphy.feighclient.GiphyFeignClient;
+import com.example.exchangeratesalfa.giphy.feignclient.GiphyFeignClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

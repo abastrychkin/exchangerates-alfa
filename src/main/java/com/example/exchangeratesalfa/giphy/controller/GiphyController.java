@@ -24,6 +24,4 @@ public class GiphyController {
     public GifUrl getRandomBrokeGif() {
         return giphyService.getRandomBrokeGif();
     }
-
-
 }

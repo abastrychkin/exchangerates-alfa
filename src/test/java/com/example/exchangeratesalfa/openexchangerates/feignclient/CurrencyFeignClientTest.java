@@ -1,33 +1,27 @@
 package com.example.exchangeratesalfa.openexchangerates.feignclient;
 
 import com.example.exchangeratesalfa.common.Common;
+import com.example.exchangeratesalfa.common.CommonForTest;
 import com.example.exchangeratesalfa.openexchangerates.domain.Currency;
-import com.example.exchangeratesalfa.openexchangerates.service.CurrencyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import wiremock.org.apache.commons.io.IOUtils;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 9091)
 public class CurrencyFeignClientTest {
+    private final CommonForTest commonForTest = new CommonForTest();
     @Autowired
     CurrencyFeignClient currencyFeignClient;
 
@@ -49,7 +43,7 @@ public class CurrencyFeignClientTest {
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                        .withBody(read("stubs/openexchangerates/latest.json"))));
+                        .withBody(commonForTest.read("stubs/openexchangerates/latest.json"))));
 
         Currency latestCurrency = currencyFeignClient.getLatestCurrency(testCurrency);
 
@@ -76,7 +70,7 @@ public class CurrencyFeignClientTest {
                 .willReturn(aResponse()
                         .withStatus(HttpStatus.OK.value())
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                        .withBody(read("stubs/openexchangerates/historical.json"))));
+                        .withBody(commonForTest.read("stubs/openexchangerates/historical.json"))));
 
         Currency latestCurrency = currencyFeignClient.getHistoricalCurrency(yesterdayFormattedString,testCurrency);
 
@@ -89,9 +83,7 @@ public class CurrencyFeignClientTest {
         assertThat(latestCurrency.getRates().entrySet().iterator().next().getValue()).isEqualTo(0.952472);
     }
 
-    private String read(String location) throws IOException {
-        return IOUtils.toString(new ClassPathResource(location).getInputStream(), StandardCharsets.UTF_8);
-    }
+
 
 
 

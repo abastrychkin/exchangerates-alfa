@@ -1,4 +1,4 @@
-package com.example.exchangeratesalfa.giphy.feighclient;
+package com.example.exchangeratesalfa.giphy.feignclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
