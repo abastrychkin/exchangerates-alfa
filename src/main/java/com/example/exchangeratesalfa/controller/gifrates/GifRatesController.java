@@ -20,10 +20,10 @@ public class GifRatesController {
 
     @GetMapping("{currency}")
     public String getGifTemplate(Model model, @PathVariable String currency) {
-        int rich = currencyService.compareWithYesterday(currency);
+        int compareWithYesterdayResult = currencyService.compareWithYesterday(currency);
         String gifUrl = "";
 
-        if (rich >= 0) {
+        if (compareWithYesterdayResult >= 0) {
             gifUrl = giphyService.getRandomRichGif().getUrl();
         } else {
             gifUrl = giphyService.getRandomBrokeGif().getUrl();
