@@ -30,6 +30,8 @@ public class GiphyFeignClientTest {
     @Test
     public void getRandomRichGif_whenValidClient_returnValidResponse() throws Exception {
 
+        String expectedUrlNode = "\"url\": \"https://media3.giphy.com/media/FQfNdTjV4toFNvAgvS/200.gif?cid=bb0e413b57ecb175c0992a3319d6fcbd1af1649214cacd29&rid=200.gif&ct=g\"";
+
         // Using WireMock to mock client API:
         stubFor(get(urlEqualTo("/random"
                 + "?api_key=" + appId
@@ -45,12 +47,13 @@ public class GiphyFeignClientTest {
         assertThat(jsonResponse).contains("\"data\": {");
         assertThat(jsonResponse).contains("\"images\": {");
         assertThat(jsonResponse).contains("\"fixed_height\": {");
-        assertThat(jsonResponse).contains("\"url\": \"https://media3.giphy.com/media/FQfNdTjV4toFNvAgvS/200.gif?cid=bb0e413b57ecb175c0992a3319d6fcbd1af1649214cacd29&rid=200.gif&ct=g\"");
+        assertThat(jsonResponse).contains(expectedUrlNode);
 
     }
 
     @Test
     public void getRandomBrokeGif_whenValidClient_returnValidResponse() throws Exception {
+        String expectedUrlNode = "\"url\": \"https://media0.giphy.com/media/iDV0F7qLO7620MhVTX/200.gif?cid=bb0e413b5f204b7665a42be1b470bcad56b5275a2ae2b729&rid=200.gif&ct=g\"";
 
         // Using WireMock to mock client API:
         stubFor(get(urlEqualTo("/random"
@@ -67,7 +70,7 @@ public class GiphyFeignClientTest {
         assertThat(jsonResponse).contains("\"data\": {");
         assertThat(jsonResponse).contains("\"images\": {");
         assertThat(jsonResponse).contains("\"fixed_height\": {");
-        assertThat(jsonResponse).contains("\"url\": \"https://media0.giphy.com/media/iDV0F7qLO7620MhVTX/200.gif?cid=bb0e413b5f204b7665a42be1b470bcad56b5275a2ae2b729&rid=200.gif&ct=g\"");
+        assertThat(jsonResponse).contains(expectedUrlNode);
 
     }
 }
