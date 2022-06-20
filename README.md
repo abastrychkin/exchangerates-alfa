@@ -12,11 +12,21 @@
 
 8. После запуска программы следует открыть браузер. 
 9. Работа с сервисом осуществляется с помощью запросов вида:
+
  http://localhost:8080/{currency}
+ 
 где {currency} - трёхбуквенная аббревиатура выбранной валюты.
+
 Пример: http://localhost:8080/eur
+
 Сервис вернёт html-страничку с gif-изображением.
+
+
+
 ![изображение](https://user-images.githubusercontent.com/107584204/174689465-0b525443-df52-4db3-a16a-6a1c1aaba05b.png)
+
+
+
 
 
 7. Полный список доступных валют можно получить по ссылке: https://docs.openexchangerates.org/docs/supported-currencies
